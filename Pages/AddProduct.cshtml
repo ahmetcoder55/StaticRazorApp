@@ -1,0 +1,60 @@
+﻿@page "/create"
+@model AddProductModel
+@{
+    ViewData["Title"] = "Yeni Ürün Ekle";
+}
+
+<div class="container my-5" style="max-width: 600px;">
+    <div class="card shadow-sm border-0 rounded-3 p-4">
+        <h2 class="fw-bold text-primary mb-4 text-center">Yeni Ürün Ekle</h2>
+        <hr class="mb-4" />
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="NewProduct.Name" class="form-label fw-semibold">Ürün Adı</label>
+                <input asp-for="NewProduct.Name" class="form-value form-control" placeholder="Örn: Mekanik Klavye"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NewProduct.Category" class="form-label fw-semibold">Kategori</label>
+                <select asp-for="NewProduct.Category" class="form-select" required>
+                    <option value="">Seçiniz...</option>
+                    <option value="Peripherals">Peripherals (Çevre Birimleri)</option>
+                    <option value="Displays">Displays (Ekranlar)</option>
+                    <option value="Laptops">Laptops (Dizüstü Bilgisayarlar)</option>
+                    <option value="Software">Software (Yazılım)</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NewProduct.Description" class="form-label fw-semibold">Ürün Açıklaması</label>
+                <textarea asp-for="NewProduct.Description" class="form-control" rows="3"
+                          placeholder="Ürün hakkında teknik detayları ve özellikleri yazın..." required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NewProduct.Price" class="form-label fw-semibold">Fiyat (TL)</label>
+                    <input asp-for="NewProduct.Price" type="number" step="0.01" class="form-control" placeholder="0.00"
+                           required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="NewProduct.Stock" class="form-label fw-semibold">Stok Adedi</label>
+                    <input asp-for="NewProduct.Stock" type="number" class="form-control" placeholder="0" required />
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Ürün Görseli Seçin (İsteğe Bağlı)</label>
+                <input type="file" name="ProductImage" class="form-control" accept="image/*" />
+                <div class="form-text text-muted">Boş bırakırsanız varsayılan bir görsel atanacaktır.</div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a asp-page="Index" class="btn btn-light px-4 rounded-pill">İptal</a>
+                <button type="submit" class="btn btn-primary px-4 rounded-pill">Ürünü Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.cs text diff=csharp eol=lf
+*.cshtml text html eol=lf
+*.json text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+wwwroot/lib/* linguist-documentation

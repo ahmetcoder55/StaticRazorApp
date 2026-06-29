@@ -1,0 +1,67 @@
+﻿@page "{id:int}"
+@model ProductDetailModel
+@{
+    ViewData["Title"] = Model.Product?.Name ?? "Ürün Detayı";
+}
+
+<div class="container my-5">
+    <div class="mb-4">
+        <a asp-page="Index" class="btn btn-light rounded-pill px-4 shadow-sm">
+            <i class="bi bi-arrow-left"></i> Kataloğa Geri Dön
+        </a>
+    </div>
+
+    <div class="card shadow border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
+            <div class="col-md-6 bg-light d-flex align-items-center justify-content-center" style="min-height: 400px;">
+                <img src="@Model.Product!.ImageUrl" 
+                     asp-append-version="true" 
+                     class="img-fluid w-100" 
+                     alt="@Model.Product.Name" 
+                     style="max-height: 500px; object-fit: cover;" />
+            </div>
+
+            <div class="col-md-6 p-5 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-primary px-3 py-2 rounded-pill fs-6">@Model.Product.Category</span>
+                        <span class="text-muted fw-semibold">Ürün ID: #@Model.Product.Id</span>
+                    </div>
+
+                    <h1 class="display-5 fw-bold text-dark mb-3">@Model.Product.Name</h1>
+                    
+                    <div class="fs-2 fw-bold text-success mb-4">
+                        @Model.Product.Price.ToString("C2")
+                    </div>
+
+                    <h5 class="fw-bold text-secondary">Ürün Açıklaması</h5>
+                    <p class="text-muted lh-base fs-5 mb-4">
+                        @Model.Product.Description
+                    </p>
+                </div>
+
+                <div class="border-top pt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="fs-5 fw-semibold text-dark">Stok Durumu:</span>
+                        @if (Model.Product.Stock > 0)
+                        {
+                            <span class="badge bg-success-subtle text-success border border-success px-3 py-2 rounded-pill">
+                                @Model.Product.Stock Adet Mevcut
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger-subtle text-danger border border-danger px-3 py-2 rounded-pill">
+                                Stokta Yok
+                            </span>
+                        }
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill fw-bold" @(Model.Product.Stock == 0 ? "disabled" : "")>
+                        Sepete Ekle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
